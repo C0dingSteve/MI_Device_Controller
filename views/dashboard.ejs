@@ -1,0 +1,68 @@
+<%- include('top.ejs') %>
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Connected Devices</h1>
+            <p class="lead text-muted">
+                The following lists all the devices connected to your acoount
+            </p>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <% _deviceList.forEach((device, index) => {%>
+                <div class="col-md-3">
+                    <div id="card-<%= device['did'] %>" class="device-card card mb-4 box-shadow">
+                        <div class="img-div">
+                            <img class="card-img-top" src=<%= device['imgURI'] %> width="128px" height="auto" alt="Card image cap"/>
+                            <%- include('popover.ejs', {_device: device, _index:index})%>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <%= device['name'] %>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button 
+                                        id="toggler-<%= device['did']%>" 
+                                        class="toggler btn btn-sm btn-outline-secondary" 
+                                        type="button"
+                                    >
+                                        ON/OFF
+                                    </button>
+                                    <!-- Dropdown -->
+                                    <div class="btn-group dropdown">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                        Features
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <% if(device['model'] == 'zhimi.airpurifier.ma2'){ %>
+                                            <%- include('airpurifier-dd.ejs', {model: device['model']}) %>
+                                            <% }else if(device['model'] == 'yeelink.light.strip1'){ %>
+                                            <div id="yeelight">
+                                                <li id="yeelight-cp" data-color="#6D2781">
+                                                    <input type="text" class="w-100 form-control"/> <br>
+                                                </li>
+                                                <li id="yeelight-auto" class="btn btn-sm btn-outline-secondary w-100 text-center">
+                                                    Auto Mode
+                                                </li>
+                                            </div>    
+                                            <% }else{ %>
+                                            <%- include('standard-dd.ejs') %>
+                                            <% } %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div> 
+    <form action="/logout" method="post">
+        <button class="btn btn-danger" type="submit" name="logout">Logout</button>
+    </form>
+</main>
+<%- include('bottom.ejs') %>

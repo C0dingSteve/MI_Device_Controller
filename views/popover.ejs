@@ -1,0 +1,12 @@
+<% let status = (_device['isOnline'])? 'online' : 'offline' %>
+<a class="pop-over" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" 
+title="<%= _device['name'] %>" 
+data-bs-html="true"
+data-bs-content="
+Model : <%= _device['model'] %><br/>
+Status: <%= status %><br/>
+Region: <%= _device['region'] %><br/>
+Info  : <%= _device['desc'] %>
+">
+<i class="fa-solid fa-circle-question fa-xl"></i>
+</a>
