@@ -6,7 +6,7 @@ A Xiaomi Smart Device Web Interface
   <img src="https://user-images.githubusercontent.com/36681624/168407459-6a120aaf-622b-400a-9b72-dea23e78cbd5.png" width="454" height="236.5">
 </p>
 
-:warning: Existing Xiaomi Account devices associated is necessary
+:warning: Existing Xiaomi Account with a few devices linked is necessary to test this project
 
 ## Prerequisites & Dependencies
 
